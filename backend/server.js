@@ -3,6 +3,7 @@ import color from "colors";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from "./config/database.js";
+import authoRoutes from "../backend/routes/authRoutes.js";
 //configure ENV
 dotenv.config();
 
@@ -15,6 +16,8 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 
+//routes
+app.use("/api/v1/auth", authoRoutes);
 app.get("/", (req, res) => {
   // res.send({ message: "Welcome to ecommerce_app BACKEND" });
   //-----also res Html element
