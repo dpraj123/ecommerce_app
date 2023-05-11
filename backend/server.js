@@ -19,8 +19,6 @@ app.use(morgan("dev"));
 //routes
 app.use("/api/v1/auth", authoRoutes);
 app.get("/", (req, res) => {
-  // res.send({ message: "Welcome to ecommerce_app BACKEND" });
-  //-----also res Html element
   res.send("<h1>Welcome to ecommerce_app BACKEND</h1>");
 });
 const PORT = process.env.PORT || 4000;
