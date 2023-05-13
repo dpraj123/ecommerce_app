@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  color: white !important;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.active {
+  border-bottom: 2px solid black;
+}
+/*================================================================= page_not_found */
+.page_not_found {
+  display: flex;
+  min-height: 60vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.page_not_found h1 {
+  font-size: 5rem;
+  font-weight: bold;
+}
+/*================================================================= Footer */
+.footer a {
+  text-decoration: none;
+}
+.footer a:hover {
+  color: white;
+}
