@@ -1,0 +1,13 @@
+.register_form {
+  min-height: 87.3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(148, 133, 133);
+}
+.register_form h1 {
+  font-weight: bold;
+}
+.register_form input {
+  margin-top: 10px;
+}
