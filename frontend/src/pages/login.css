@@ -1,0 +1,12 @@
+.login_page {
+  min-height: 87.3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login_page h1 {
+  font-weight: bold;
+}
+.login_page input {
+  margin-top: 10px;
+}

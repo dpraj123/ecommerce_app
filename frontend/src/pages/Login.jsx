@@ -1,28 +1,35 @@
 import React, { useState } from "react";
-import { toast } from "react-toastify";
-import Layout from "../components/Layout.jsx";
 import axios from "axios";
-import "./signup.css";
 import { useNavigate } from "react-router-dom";
-const SignUp = () => {
+import { toast } from "react-toastify";
+import "./login.css";
+import Layout from "../components/Layout";
+import { useAuth } from "../context/auth";
+const Login = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
-    phone: "",
-    address: "",
   });
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API}/api/v1/auth/register`,
+        `${process.env.REACT_APP_API}/api/v1/auth/login`,
         formData
       );
-      if (res.data.success) {
+
+      if (res && res.data.success) {
         toast.success(res.data.message);
-        navigate("/login");
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+        // set in local storage
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        navigate("/");
       } else {
         toast.error(res.data.message);
       }
@@ -38,21 +45,11 @@ const SignUp = () => {
       [e.target.name]: e.target.value,
     });
   };
-
   return (
     <Layout>
-      <div className="register_form">
+      <div className="login_page">
         <form onSubmit={handleSubmit}>
-          <h1>Register Page</h1>
-          <input
-            type="text"
-            name="name"
-            className="form-control"
-            placeholder="Enter Name"
-            onChange={handleInputChange}
-            required
-          />
-
+          <h1>IndoZon</h1>
           <input
             name="email"
             type="email"
@@ -71,26 +68,8 @@ const SignUp = () => {
             required
           />
 
-          <input
-            name="phone"
-            type="text"
-            className="form-control"
-            placeholder="Phone"
-            onChange={handleInputChange}
-            required
-          />
-
-          <input
-            name="address"
-            type="text"
-            className="form-control"
-            placeholder=" address"
-            onChange={handleInputChange}
-            required
-          />
-
           <button type="submit" className="btn btn-primary mt-2">
-            Register
+            Sign In
           </button>
         </form>
       </div>
@@ -98,4 +77,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;
